@@ -1,0 +1,33 @@
+{
+  "name": "@wildebeest/persistance",
+  "version": "0.1.0",
+  "description": "Persistant module for storing data in browser session",
+  "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --declaration"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pipan/js-presistance.git"
+  },
+  "dependencies": {
+    "@wildebeest/js-modules": "^0.1.1",
+    "js-cookie": "^2.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.4.3"
+  },
+  "keywords": [
+    "js",
+    "module",
+    "presistance",
+    "cookies"
+  ],
+  "author": "Peter Gasparik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pipan/js-presistance/issues"
+  },
+  "homepage": "https://github.com/pipan/js-presistance#readme"
+}
