@@ -8,7 +8,10 @@ export class CookieStorage implements Storage
 
     clear(): void
     {
-        document.cookie = "";
+        for (let i = 0; i < this.length; i++) {
+            this.removeItem(this.key(i));
+        }
+        this.recalcLength();
     }
 
     getItem(key: string): string
@@ -19,7 +22,7 @@ export class CookieStorage implements Storage
     key(index: number): string
     {
         let all: Array<string> = document.cookie.split(";");
-        if (all.length >= index) {
+        if (all.length <= index) {
             return null;
         }
         let item: Array<string> = all[index].split("=");
@@ -31,11 +34,22 @@ export class CookieStorage implements Storage
 
     setItem(key: string, value: string): void
     {
-        return Cookies.set(key, value);
+        Cookies.set(key, value);
+        this.recalcLength();
     }
 
     removeItem(key: string): void
     {
         Cookies.remove(key);
+        this.recalcLength();
+    }
+
+    protected recalcLength(): void
+    {
+        if (document.cookie == "") {
+            this.length = 0;
+        } else {
+            this.length = document.cookie.split(";").length;
+        }
     }
 }

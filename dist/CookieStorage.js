@@ -13,14 +13,17 @@ var CookieStorage = (function () {
         this.length = 0;
     }
     CookieStorage.prototype.clear = function () {
-        document.cookie = "";
+        for (var i = 0; i < this.length; i++) {
+            this.removeItem(this.key(i));
+        }
+        this.recalcLength();
     };
     CookieStorage.prototype.getItem = function (key) {
         return Cookies.get(key);
     };
     CookieStorage.prototype.key = function (index) {
         var all = document.cookie.split(";");
-        if (all.length >= index) {
+        if (all.length <= index) {
             return null;
         }
         var item = all[index].split("=");
@@ -30,10 +33,20 @@ var CookieStorage = (function () {
         return item[0];
     };
     CookieStorage.prototype.setItem = function (key, value) {
-        return Cookies.set(key, value);
+        Cookies.set(key, value);
+        this.recalcLength();
     };
     CookieStorage.prototype.removeItem = function (key) {
         Cookies.remove(key);
+        this.recalcLength();
+    };
+    CookieStorage.prototype.recalcLength = function () {
+        if (document.cookie == "") {
+            this.length = 0;
+        }
+        else {
+            this.length = document.cookie.split(";").length;
+        }
     };
     CookieStorage = __decorate([
         inversify_1.injectable()
