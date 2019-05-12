@@ -26,7 +26,7 @@
   "devDependencies": {
     "@types/jest": "^24.0.12",
     "@wildebeest/js-modules": "^0.1.5",
-    "inversify": "^4.0.0",
+    "inversify": "^5.0.0",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
     "typescript": "^3.4.5"
